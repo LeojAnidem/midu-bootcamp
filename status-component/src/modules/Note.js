@@ -1,9 +1,10 @@
-export const Note = ({id, content, date}) => {
+// export const Note = ({content, date}) => {
+export const Note = ({title, body}) => {
   return (
     <li>
-      <p>{content}</p>
+      <p>{title}</p>
       <small>
-        <time>{date}</time>
+        <time>{body}</time>
       </small>
     </li>
   )
