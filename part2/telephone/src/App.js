@@ -1,7 +1,9 @@
 import { useState, useEffect } from 'react'
-import reactStringReplace from 'react-string-replace';
 import axios from 'axios'
+import { DisplayMatches } from './modules/DisplayMatches'
 import './styles/app.css'
+
+//////////////////////////////////////////////////////////////////
 
 export const App = () => {
   const [countries, setCountries] = useState([])
@@ -18,7 +20,10 @@ export const App = () => {
       })
   }, [])
 
+  //////////////////////////////////////////////////////////////////
+
   const handleChange = (e) => setFindCountry(e.target.value)
+  
   const handleSubmit = (e) => {
     e.preventDefault()
     setFindCountry('')
@@ -26,98 +31,23 @@ export const App = () => {
   
   const findCountriesMatches = (countries) => {
 
-    const matchCountry = (arrCountry) => {
+    const match = (arr, matchString) => {
       return  (
-        arrCountry.filter(({name}) => {
+        arr.filter(({name}) => {
           const commonName = (name.common).toLowerCase()
           const officialName = (name.official).toLowerCase()
-          const regex = new RegExp (findCountry.toLowerCase(), 'gi')
+          const regex = new RegExp (matchString.toLowerCase(), 'gi')
     
           return (commonName.match(regex) || officialName.match(regex))
         })
       )
     }
 
-    const displayMatches = (arrFilter) => {
-      
-      const highlightMatch = (string) => {
-        return (
-          <>
-            {
-              reactStringReplace(string, findCountry, (macth, i) => {
-                return <span key={i} className='hl'>{macth}</span>
-              })
-            }
-          </>
-        )
-      }
-
-      const importantInfo = ({name}) => {
-        return (
-          <p>
-            {highlightMatch(name.common)}
-            <br></br>
-            <strong>Official Name: </strong> {highlightMatch(name.official)}
-          </p>
-        )
-      }
-
-      const allInfo = ({name, capital, population, languages, flag}) => {
-        let arrLanguages = []
-        
-        for(let language in languages){
-          arrLanguages.push(languages[language])
-        }
-
-        return (
-          <div>
-            <h1>{name.common}</h1>
-            <p><strong>Capital: </strong>{capital}</p>
-            <p><strong>Population: </strong> {population}</p>
-            <h2>Languages</h2>
-            <ul>
-              {arrLanguages.map(language => <li>{language}</li>)}
-            </ul>
-            <p className='emoji'>
-              {flag}
-            </p>
-          </div>
-        )
-      }
-
-      /* 
-        TODO: Cada 10 resultados crear un array con esos resultados
-        TODO: Crear botones para retroceder o avanzar entre esos resultados
-        TODO: Crear boton para ver informacion detallado del pais seleccionado
-        TODO: Refactorizar codigo
-      */
-
-      if (arrFilter.length > 10) {
-        arrFilter = arrFilter.filter((val, index) => index < 10)
-      }
-
-      return (
-        arrFilter.map((country) => {
-          return (
-            <>
-              {
-                (arrFilter.length === 1)
-                  ? allInfo(country)
-                  : importantInfo(country)
-              }  
-            </>
-          )
-        })
-      )
-    }
-
-    const listMatchCountry = matchCountry(countries)
-    return (
-      <>
-        {displayMatches(listMatchCountry)}
-      </>
-    )
+    const listMatch = match(countries, findCountry)
+    return <DisplayMatches arr={listMatch} matchString={findCountry} />
   }
+
+  /////////////////////////////////////////////////////////////////
 
   if (loading) return <h1>Cargando...</h1>
 
