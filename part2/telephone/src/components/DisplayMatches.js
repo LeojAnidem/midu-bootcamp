@@ -1,28 +1,24 @@
 import { AllInfo } from "./AllInfo"
 import { ImportantInfo } from "./ImportantInfo"
 
-const addPages = (arr, pagesResult) => {
-  const deleteFirst10 = (arr, canDeleteAll = false) => {
-    const num = canDeleteAll ? arr.length : 10
-    for(let i=0; i < num; i++) {arr.shift()}
-  }
-  
-  let copyArr = [],
-      result = []
-  
+const deleteFirst10 = (arr, canDeleteAll = false) => {
+  const num = canDeleteAll ? arr.length : 10
+  for(let i=0; i < num; i++) {arr.shift()}
+}
+
+const addPages = (arr, pagesResult = []) => { 
+  let result = [],
+      copyArr = []
+
   if (arr.length > 0) {
     copyArr = [...arr]
     result = copyArr.filter((val, index) => index < 10)
-    pagesResult = [...pagesResult, [result]]
-  }
 
-  if (copyArr.length > 0) {
-
-    (copyArr.length > 10) 
+    arr.length > 10
       ? deleteFirst10(copyArr)
       : deleteFirst10(copyArr, true)
 
-    return addPages(copyArr, pagesResult)
+    pagesResult = [...pagesResult, result, ...addPages(copyArr)] || []
   }
 
   return pagesResult
@@ -37,11 +33,11 @@ export const DisplayMatches = ({arr, matchString}) => {
     TODO: Refactorizar codigo ✅
   */
   
-  if (arr.length > 10) arr = arr.filter((val, index) => index < 10)
 
-  // let pagesOfResults = []
-  // pagesOfResults = addPages(arr, pagesOfResults)
-  // console.log(pagesOfResults, pagesOfResults[0], pagesOfResults[0][0])
+  let pagesOfResults = addPages(arr)
+  console.log(arr, pagesOfResults)
+  
+  if (arr.length > 10) arr = arr.filter((val, index) => index < 10)
 
   return (
     <>

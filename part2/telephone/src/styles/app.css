@@ -1,7 +1,43 @@
+@import url('https://fonts.googleapis.com/css2?family=Varela+Round&display=swap');
+
 @font-face {
   font-family: NotoColorEmojiLimited;
   unicode-range: U+1F1E6-1F1FF;
   src: url(https://raw.githack.com/googlefonts/noto-emoji/main/fonts/NotoColorEmoji.ttf);
+}
+
+:root {
+  --black: #191A19;
+  --white: #EAEAEA;
+  --grey: ##969696;
+  --green-dark: #1E5128;
+  --green: #4E9F3D;
+  --green-light: #D8E9A8;
+}
+
+*{
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+html {
+  font-size: 6.25%;
+}
+
+body {
+  display: grid;
+  place-items: center;
+
+  width: 100%;
+  height: 100vh;
+
+  background: #272727;
+  color: #eaeaea;
+
+  font-family: 'Varela Round', sans-serif;
+  font-size: 36rem;
 }
 
 .emoji{
@@ -10,9 +46,4 @@
   'Segoe UI Emoji', 'Segoe UI Symbol';
 
   font-size: 48px;
-}
-
-.hl {
-  padding: 2px;
-  background: orange;
 }

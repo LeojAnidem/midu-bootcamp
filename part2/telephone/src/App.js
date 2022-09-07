@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react'
 import axios from 'axios'
-import { DisplayMatches } from './modules/DisplayMatches'
+import { Matches } from './components/Matches'
+import { GitHubLink } from './components/GitHubLink'
+import { SearchInput } from './components/SearchInput'
 import './styles/app.css'
 
 //////////////////////////////////////////////////////////////////
@@ -21,30 +23,10 @@ export const App = () => {
   }, [])
 
   //////////////////////////////////////////////////////////////////
-
-  const handleChange = (e) => setFindCountry(e.target.value)
   
   const handleSubmit = (e) => {
     e.preventDefault()
     setFindCountry('')
-  }
-  
-  const findCountriesMatches = (countries) => {
-
-    const match = (arr, matchString) => {
-      return  (
-        arr.filter(({name}) => {
-          const commonName = (name.common).toLowerCase()
-          const officialName = (name.official).toLowerCase()
-          const regex = new RegExp (matchString.toLowerCase(), 'gi')
-    
-          return (commonName.match(regex) || officialName.match(regex))
-        })
-      )
-    }
-
-    const listMatch = match(countries, findCountry)
-    return <DisplayMatches arr={listMatch} matchString={findCountry} />
   }
 
   /////////////////////////////////////////////////////////////////
@@ -52,14 +34,21 @@ export const App = () => {
   if (loading) return <h1>Cargando...</h1>
 
   return (
-    <form onSubmit={handleSubmit}>
-      <span>find countries: </span>
-      <input type='text' onChange={handleChange} value={findCountry} />
+    <>
+      <GitHubLink />
+
+      <form onSubmit={handleSubmit}>
+        <SearchInput 
+          changer={setFindCountry} 
+          placeholder={'Write country name...'}
+          val={findCountry} 
+        />
+      </form>
       {
         findCountry !== '' 
-          ? findCountriesMatches(countries)
+          ? <Matches arr={countries} matchString={findCountry}/>
           : <p>Ingrese una letra para comenzar su busqueda!</p>
       }
-    </form>  
+    </>
   );
 }
