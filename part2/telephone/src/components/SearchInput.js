@@ -1,3 +1,4 @@
+import { FaSearch } from 'react-icons/fa'
 import '../styles/searchInput.css'
 
 export const SearchInput = ({changer, val, placeholder}) => {
@@ -6,9 +7,7 @@ export const SearchInput = ({changer, val, placeholder}) => {
   return (
     <div className="search-bg">
       <label htmlFor='searchInput'>
-        <i className="search__icon">
-
-        </i>
+        <FaSearch className="search__icon"/>
       </label>
       
       <input 
