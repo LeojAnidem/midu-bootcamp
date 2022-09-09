@@ -33,8 +33,8 @@ body {
   width: 100%;
   height: 100vh;
 
-  background: #272727;
-  color: #eaeaea;
+  background:  var(--black);
+  color: var(--white);
 
   font-family: 'Varela Round', sans-serif;
   font-size: 36rem;
@@ -49,7 +49,11 @@ body {
 }
 
 #root {
+  /* overflow: hidden; */
   display: grid;
   place-items: center;
+
+  width: 550px;
+
   gap: 60px;
 }

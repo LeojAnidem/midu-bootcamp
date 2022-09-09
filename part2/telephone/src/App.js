@@ -39,7 +39,11 @@ export const App = () => {
 
       {
         findCountry !== '' &&
-          <Matches arr={countries} matchString={findCountry}/>
+          <Matches 
+            arr={countries} 
+            matchString={findCountry}
+            changer={setFindCountry}
+          />
       }
     </>
   );

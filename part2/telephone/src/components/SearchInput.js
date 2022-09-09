@@ -25,7 +25,7 @@ export const SearchInput = ({changer, val, placeholder}) => {
         value={val} 
         id='searchInput'
         type='text'
-        autocomplete="new-password"
+        autoComplete="new-password"
       />
     </form>
   )
