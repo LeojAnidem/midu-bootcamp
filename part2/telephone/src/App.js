@@ -24,13 +24,6 @@ export const App = () => {
   }, [])
 
   //////////////////////////////////////////////////////////////////
-  
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    setFindCountry('')
-  }
-
-  /////////////////////////////////////////////////////////////////
 
   if (loading) return <h1>Cargando...</h1>
 
@@ -38,17 +31,15 @@ export const App = () => {
     <>
       <GitHubLink />
 
-      <form onSubmit={handleSubmit}>
-        <SearchInput 
-          changer={setFindCountry} 
-          placeholder={'Write country name...'}
-          val={findCountry} 
-        />
-      </form>
+      <SearchInput 
+        changer={setFindCountry} 
+        placeholder={'Write country name...'}
+        val={findCountry} 
+      />
+
       {
-        findCountry !== '' 
-          ? <Matches arr={countries} matchString={findCountry}/>
-          : <p>Ingrese una letra para comenzar su busqueda!</p>
+        findCountry !== '' &&
+          <Matches arr={countries} matchString={findCountry}/>
       }
     </>
   );

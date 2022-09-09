@@ -9,7 +9,7 @@
 :root {
   --black: #191A19;
   --white: #EAEAEA;
-  --grey: ##969696;
+  --gray: #757575;
   --green-dark: #1E5128;
   --green: #4E9F3D;
   --green-light: #D8E9A8;
@@ -46,4 +46,10 @@ body {
   'Segoe UI Emoji', 'Segoe UI Symbol';
 
   font-size: 48px;
+}
+
+#root {
+  display: grid;
+  place-items: center;
+  gap: 60px;
 }
