@@ -11,18 +11,23 @@ export const AllInfo = ({name, capital, population, languages, flag}) => {
   return (
     <div className="allInfo-box">
       <h1 className="allInfo__title">
-        <span className='allInfo__flag'>
+        <span className="allInfo__flag">
           {flag}
         </span>
-        {name.common}
+
+        <span className="allInfo__name">
+          {name.common}
+        </span>
       </h1>
 
       <div className="allInfo__content">
-        <div className='allInfo__block'>
-          <span className='allInfo__prop'>
+        <div className="allInfo__block">
+          <span className="allInfo__prop">
             Capital:
           </span>
-          {capital}
+          <span className="allInfo__capital scroll">
+            {capital}
+          </span>
         </div>
 
         <div className="allInfo__block">
@@ -37,7 +42,7 @@ export const AllInfo = ({name, capital, population, languages, flag}) => {
         <h2 className="allInfo__subTitle">
           Languages
         </h2>
-        <ul className="allInfo__list">
+        <ul className="allInfo__list scroll">
           {
             arrLanguages.map(language => 
               <li 
