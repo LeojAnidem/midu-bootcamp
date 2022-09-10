@@ -1,11 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Varela+Round&display=swap');
 
-@font-face {
-  font-family: NotoColorEmojiLimited;
-  unicode-range: U+1F1E6-1F1FF;
-  src: url(https://raw.githack.com/googlefonts/noto-emoji/main/fonts/NotoColorEmoji.ttf);
-}
-
 :root {
   --black: #191A19;
   --white: #EAEAEA;
@@ -38,14 +32,6 @@ body {
 
   font-family: 'Varela Round', sans-serif;
   font-size: 36rem;
-}
-
-.emoji{
-  font-family: 'NotoColorEmojiLimited', -apple-system, BlinkMacSystemFont, 
-  'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 
-  'Segoe UI Emoji', 'Segoe UI Symbol';
-
-  font-size: 48px;
 }
 
 #root {

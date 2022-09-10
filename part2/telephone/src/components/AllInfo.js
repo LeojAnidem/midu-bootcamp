@@ -1,3 +1,4 @@
+import { FaUsers } from 'react-icons/fa';
 import '../styles/allInfo.css'
 
 export const AllInfo = ({name, capital, population, languages, flag}) => {
@@ -9,27 +10,45 @@ export const AllInfo = ({name, capital, population, languages, flag}) => {
 
   return (
     <div className="allInfo-box">
-      <div className="allInfo__content">
-        <h1 className="allInfo__title">{name.common}</h1>
-        <p >
-          <strong>Capital: </strong>
-          {capital}
-        </p>
-        <p>
-          <strong>Population: </strong>
-          {population}
-        </p>
+      <h1 className="allInfo__title">
+        <span className='allInfo__flag'>
+          {flag}
+        </span>
+        {name.common}
+      </h1>
 
-        <h2 className="allInfo__subTitle">Languages</h2>
-        <ul className="allInfo__list">
-          {arrLanguages.map(language => <li className="allInfo__item" key={Math.random(1000)}>{language}</li>)}
-        </ul>
+      <div className="allInfo__content">
+        <div className='allInfo__block'>
+          <span className='allInfo__prop'>
+            Capital:
+          </span>
+          {capital}
+        </div>
+
+        <div className="allInfo__block">
+          <span className='allInfo__text--small'>
+            {population}
+          </span> 
+          <FaUsers className="allInfo__icon" />
+        </div>
       </div>
       
-      <div className="allInfo__content">
-        <p className='emoji'>
-          {flag}
-        </p>
+      <div className="allInfo__list-box">
+        <h2 className="allInfo__subTitle">
+          Languages
+        </h2>
+        <ul className="allInfo__list">
+          {
+            arrLanguages.map(language => 
+              <li 
+                className="allInfo__item" 
+                key={Math.random(1000)}
+              >
+                {language}
+              </li>
+            )
+          }
+        </ul>
       </div>
     </div>
   )
