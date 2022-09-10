@@ -15,7 +15,7 @@ export const AllInfo = ({name, capital, population, languages, flag}) => {
           {flag}
         </span>
 
-        <span className="allInfo__name">
+        <span className="allInfo__name scroll">
           {name.common}
         </span>
       </h1>
